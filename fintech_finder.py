@@ -38,6 +38,19 @@ from dotenv import load_dotenv
 load_dotenv()
 
 api_key=os.getenv('MNEMONIC')
+
+################################################################################
+
+# hide streamlit menu, footer
+hide_st_style = """
+            <style>
+            MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            #header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
 ################################################################################
 # Step 1:
 # Import Ethereum Transaction Functions into the Fintech Finder Application
@@ -86,7 +99,7 @@ api_key=os.getenv('MNEMONIC')
 
 # From `crypto_wallet.py import the functions generate_account, get_balance,
 #  and send_transaction
-from crypto_wallet import generate_account, get_balance, send_transacti
+from crypto_wallet import generate_account, get_balance, send_transaction
 
 # Database of Fintech Finder candidates including their name, digital address, rating and hourly cost per Ether.
 # A single Ether is currently valued at $1,500
