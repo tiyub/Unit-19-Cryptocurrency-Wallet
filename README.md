@@ -10,8 +10,7 @@ Customers will be able to send cryptocurrency payments to fintech professionals.
 
 ## Solution
 
-
-[Click to interact with this Streamlit - Cryptocurrency Wallet app.](https://unit-19-cryptocurrency-wallet.herokuapp.com)
+<!-- [Click to interact with this Streamlit - Cryptocurrency Wallet app.](https://unit-19-cryptocurrency-wallet.herokuapp.com) -->
 
 The Streamlit app was deployed locally.
 
