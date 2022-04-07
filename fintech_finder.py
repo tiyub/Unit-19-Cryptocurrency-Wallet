@@ -1,56 +1,27 @@
 # Cryptocurrency Wallet
 
 ################################################################################
-# For this Challenge, you will assume the perspective of a Fintech Finder
-# customer in order to do the following:
-
-# * Generate a new Ethereum account instance by using your mnemonic seed phrase
-# (which you created earlier in the module).
-
-# * Fetch and display the account balance associated with your Ethereum account
-# address.
-
-# * Calculate the total value of an Ethereum transaction, including the gas
-# estimate, that pays a Fintech Finder candidate for their work.
-
-# * Digitally sign a transaction that pays a Fintech Finder candidate, and send
-# this transaction to the Ganache blockchain.
-
-# * Review the transaction hash code associated with the validated blockchain transaction.
-
-# Once you receive the transaction’s hash code, you will navigate to the Transactions
-# section of Ganache to review the blockchain transaction details. To confirm that 
-# you have successfully created the transaction, you will save screenshots to the 
-# README.md file of your GitHub repository for this Challenge assignment.
-
-################################################################################
 # Imports
+from pkgutil import walk_packages
 import streamlit as st
 from dataclasses import dataclass
 from typing import Any, List
 from web3 import Web3
-w3 = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545'))
+
+# r:  for local devlopment
+# w3 = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545'))
+
+# r:  for cloud/Heroku deployment
+w3 = Web3(Web3.HTTPProvider('https://unit-19-cryptocurrency-wallet.herokuapp.com'))
+
 ################################################################################
-# A best practice, ss noted in previously and not to include private mnemonic, read MNEMONIC from external .env file
+# r:    as a best practice - noted previously, do not to include private mnemonic, read MNEMONIC from external .env file
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
 api_key=os.getenv('MNEMONIC')
-
-################################################################################
-
-# hide streamlit menu, footer
-hide_st_style = """
-            <style>
-            MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            #header {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_st_style, unsafe_allow_html=True)
-
 ################################################################################
 # Step 1:
 # Import Ethereum Transaction Functions into the Fintech Finder Application
@@ -89,6 +60,7 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 # customer’s account. Inside this function, call the `get_balance` function
 # and pass it your Ethereum `account.address`.
 
+
 ################################################################################
 # Step 1 - Part 3:
 # Import the following functions from the `crypto_wallet.py` file:
@@ -100,6 +72,9 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 # From `crypto_wallet.py import the functions generate_account, get_balance,
 #  and send_transaction
 from crypto_wallet import generate_account, get_balance, send_transaction
+
+################################################################################
+# Fintech Finder Candidate Information
 
 # Database of Fintech Finder candidates including their name, digital address, rating and hourly cost per Ether.
 # A single Ether is currently valued at $1,500
@@ -137,13 +112,14 @@ st.text(" \n")
 ################################################################################
 # Streamlit Sidebar Code - Start
 
-st.sidebar.markdown("## Client Account Address and Ethernet Balance in Ether")
+st.sidebar.markdown("## Client Account Address and Ethereum Balance in Ether")
 
 ##########################################
 # Step 1 - Part 4:
 # Create a variable named `account`. Set this variable equal to a call on the
 # `generate_account` function. This function will create the Fintech Finder
 # customer’s (in this case, your) HD wallet and Ethereum account.
+
 
 #  Call the `generate_account` function and save it as the variable `account`
 account = generate_account()
@@ -159,9 +135,11 @@ st.sidebar.write(account.address)
 # customer’s account. Inside this function, call the `get_balance` function and
 #  pass it your Ethereum `account.address`.
 
+
 # Call `get_balance` function and pass it your account address
 # Write the returned ether balance to the sidebar
 get_balance = account.address
+
 st.sidebar.write(get_balance)
 
 ##########################################
@@ -255,7 +233,6 @@ st.sidebar.markdown("## Total Wage in Ether")
 # value of the `hours` variable
 wage = (candidate_database[person][3] * hours)
 
-
 # Write the `wage` calculation to the Streamlit sidebar
 st.sidebar.write(wage)
 
@@ -280,11 +257,11 @@ st.sidebar.write(wage)
 
 if st.sidebar.button("Send Transaction"):
 
-    
+
     # Call the `send_transaction` function and pass it 3 parameters:
     # Your `account`, the `candidate_address`, and the `wage` as parameters
     # Save the returned transaction hash as a variable named `transaction_hash`
-    send_transaction(w3, account, candidate_address, wage)
+    send_transaction('account', 'candidate_address', 'wage')
     transaction_hash = send_transaction
 
     # Markdown for the transaction hash
