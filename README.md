@@ -21,4 +21,14 @@ Payment transfer input and recording - with snow animation instead of ballons in
 ![Payment transfer input and recording.](Images/002-eth-amt-input.png)  
 ![Snow animation instead of ballons in from the boilerplate file.](Images/003-snow.png)
 
+## References
+
+<details><summary>Disclose</summary>  
+
+#### Note  
+
+<sup><a id="ref001">1</a></sup> Aleksey Bilogur (2017-02-06). How solve python requests error: "Max retries exceeded with url". Retrieved from [stackoverflow.com](https://stackoverflow.com/questions/42059628/how-solve-python-requests-error-max-retries-exceeded-with-url).
+
+</details>
+
 ---
